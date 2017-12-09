@@ -52,11 +52,7 @@ class UeCaptchaSms extends Sms
         $event->response = $response;
         $this->trigger(self::EVENT_AFTER_SEND, $event);
 
-        if (ArrayHelper::getValue($response, 'returnstatus') == 'Success') {
-            return true;
-        } else {
-            return false;
-        }
+        return $response;
     }
 
     /**

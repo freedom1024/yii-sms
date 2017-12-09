@@ -17,12 +17,6 @@ use yii\base\Object;
 class SendSms extends Object implements \yii\queue\Job
 {
     /**
-     * 4S店id
-     * @var integer
-     */
-    public $shopId;
-
-    /**
      * 手机号
      * @var string
      */
@@ -51,7 +45,7 @@ class SendSms extends Object implements \yii\queue\Job
      */
     public function execute($queue)
     {
-        \Yii::$app->subSms->getSmsInstance($this->shopId)->send(
+        \Yii::$app->sms->send(
             $this->tel,
             $this->content,
             $this->module,

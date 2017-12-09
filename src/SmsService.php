@@ -24,10 +24,9 @@ class SmsService
      * @param string $apiName
      * @param string $ip
      */
-    public function sendSubSms($shopId, $tel, $content, $module, $ip)
+    public function sendSms($tel, $content, $module, $ip)
     {
-        \Yii::$app->queue->push(new SendSubSms([
-            'shopId' => $shopId,
+        \Yii::$app->queue->push(new SendSms([
             'tel' => $tel,
             'content' => $content,
             'module' => $module,
