@@ -8,11 +8,11 @@
 namespace yii\sms;
 
 use common\exceptions\UserException;
-use common\models\center\Area;
+use common\models\center\Shop;
 use yii\helpers\ArrayHelper;
 
 /**
- * 优易网普通短信
+ * 优易网普通短信（通过不同4s店配置的短信子账号发送）
  * Class Uesms
  * @package yii
  */
@@ -51,9 +51,9 @@ class UeSms extends Sms
      */
     public static function getSmsInstance($shopId)
     {
-        $shopModel = Area::find()
+        $shopModel = Shop::find()
             ->joinWith(['extend'])
-            ->areaId($shopId)
+            ->shopId($shopId)
             ->active()
             ->one();
 
@@ -79,7 +79,7 @@ class UeSms extends Sms
                 'account' => trim($account),
                 'password' => trim($password),
                 'sign' => trim($signature),
-                'areaId' => $shopId,
+                'shopId' => $shopId,
                 'as sms' => SmsBehavior::class,
             ]);
         }

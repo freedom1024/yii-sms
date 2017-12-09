@@ -9,7 +9,7 @@ namespace yii\sms;
 use yii\helpers\ArrayHelper;
 
 /**
- * 优易网短信验证码
+ * 优易网短信验证码（通过总账号发送）
  * Class UeCaptchaSms
  * @package yii
  */

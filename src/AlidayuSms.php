@@ -34,21 +34,20 @@ class AlidayuSms extends Sms
 
     /**
      * 发送短信
-     * @param $tels
+     * @param $tel
      * @param array $content
      * @param $ip
      * @param string $module
      * @param string $apiName
      * @return bool
      */
-    public function send($tels, $content, $module, $ip, $apiName = self::API_SMS_ALIDAYU)
+    public function send($tel, $content, $module, $ip, $apiName = self::API_SMS_ALIDAYU)
     {
         /**
          * @var $templateId string 短信模板id
          * @var $params string 短信内容
          */
         extract($content);
-        $tel = reset($tels);
 
         $event = new SmsEvent([
             'tel' => $tel,

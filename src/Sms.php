@@ -19,7 +19,7 @@ use yii\helpers\ArrayHelper;
  * Class Sms
  * @package yii
  */
-abstract class Sms extends Component implements UesmsInterface
+abstract class Sms extends Component implements SmsInterface
 {
     /**
      * @event ExecEvent

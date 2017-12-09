@@ -1,7 +1,7 @@
 {
-    "name": "freedom1024/yii-sms",
+    "name": "freedom1024/yii2-sms",
     "type": "library",
-    "description": "Mobile sms for PHP",
+    "description": "Mobile sms for Yii2",
     "keywords": ["mobile", "sms", "php", "yii2"],
     "homepage": "http://blog.herozw.com",
     "authors": [
@@ -17,9 +17,9 @@
         "yiisoft/yii2-queue": "^2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.0",
+        "phpunit/phpunit": "~4.0"
     },
     "autoload": {
         "psr-4": { "yii\\sms\\": "" }
-    },
+    }
 }
