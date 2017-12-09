@@ -5,18 +5,17 @@
  * Time: 14:17
  */
 
-namespace common\services;
+namespace yii\sms;
 
-use common\components\queue\SendSms;
+use yii\sms\queue\SendSms;
 
 /**
- * 短信服务.
+ * 短信队列服务.
  * @package common\services
  */
 class SmsService
 {
     /**
-     * 通过子账号发送短信
      * @param $shopId
      * @param $tel
      * @param array|string $content

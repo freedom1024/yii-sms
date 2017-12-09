@@ -5,14 +5,14 @@
  * Time: 9:18
  */
 
-namespace common\components\queue;
+namespace yii\sms\queue;
 
 use yii\base\Object;
 
 /**
- * 通过子账号发送短信
+ * 发送短信队列
  * Class SendSms
- * @package common\components\queue
+ * @package yii\sms\queue
  */
 class SendSms extends Object implements \yii\queue\Job
 {
