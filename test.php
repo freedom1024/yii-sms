@@ -14,7 +14,7 @@
     \Yii::$app->request->userIP
 );
 
-//总账号发送
+//总账号发送短信
 \Yii::$app->generalSms->send(
     13168766000,
     '验证码是123，退订回T',
