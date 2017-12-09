@@ -2,7 +2,7 @@
     "name": "freedom1024/yii-sms",
     "type": "library",
     "description": "Mobile sms for PHP",
-    "keywords": ["mobile", "sms", "php"],
+    "keywords": ["mobile", "sms", "php", "yii2"],
     "homepage": "http://blog.herozw.com",
     "authors": [
         {
