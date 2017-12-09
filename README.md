@@ -18,7 +18,7 @@ return [
             'as sms' => yii\sms\SmsBehavior::class,
         ],
         'subSms' => [
-            // 优易网营销短信
+            // 优易网营销短信（子账号方式）
             'class' => UeSms::class,
         ],
     ],
@@ -40,7 +40,7 @@ return [
             'as sms' => yii\sms\SmsBehavior::class,
          ],
         'subSms' => [
-            // 优易网营销短信
+            // 优易网营销短信（子账号方式）
             'class' => UeSms::class,
         ],		
     ],
