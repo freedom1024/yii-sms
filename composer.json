@@ -1,12 +1,11 @@
 {
-  "name": "ryan/yii2-sms",
+  "name": "ryan1/yii2-sms",
   "description": "Yii 2 sms extension",
   "type": "yii2-extension",
   "keywords": [
     "yii",
-    "yii2",
-    "sms",
-    "mobile sms"
+    "yii2-sms",
+    "sms"
   ],
   "license": "BSD-3-Clause",
   "require": {
