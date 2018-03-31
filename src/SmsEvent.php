@@ -6,19 +6,20 @@
  * Time: 17:42
  */
 
-namespace yii\sms;
+namespace ryan\yii\sms;
 
 
 use yii\base\Event;
 
 class SmsEvent extends Event
 {
-    public $tel;
-    public $content = '';
-    public $response;
-    public $ip;
-    public $module;
-    public $apiName;
-    public $billing;
+    /**
+     * @var $params
+     */
+    public $params;
 
+    /**
+     * @var $response
+     */
+    public $response;
 }

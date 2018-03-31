@@ -6,7 +6,7 @@
  * Time: 17:33
  */
 
-namespace yii\sms;
+namespace ryan\yii\sms;
 
 
 use yii\base\Behavior;
@@ -19,8 +19,8 @@ class SmsBehavior extends Behavior
     public function events()
     {
         return [
-            Sms::EVENT_BEFORE_SEND => 'beforeSend',
-            Sms::EVENT_AFTER_SEND => 'afterSend'
+            BaseSms::EVENT_BEFORE_SEND => 'beforeSend',
+            BaseSms::EVENT_AFTER_SEND => 'afterSend'
         ];
     }
 
@@ -29,8 +29,8 @@ class SmsBehavior extends Behavior
      */
     public function beforeSend(SmsEvent $event)
     {
-        $event->tel = Sms::filterTel($event->tel);
-        $event->content = is_array($event->content) ? $event->content : Sms::filterContent($event->content);
+        // beforeSend code goes here...
+
     }
 
     /**
@@ -38,23 +38,9 @@ class SmsBehavior extends Behavior
      */
     public function afterSend(SmsEvent $event)
     {
-        \Yii::info($event->response);
+        // afterSend code goes here...
+        \Yii::info($event->response, __METHOD__);
 
-        $smsLog = [
-            'tel' => (int)$event->tel,
-            'content' => $event->content,
-            'billingNum' => is_array($event->content) ? 0 : Sms::calculateBillingNum($event->content),
-            'ip' => $event->ip,
-            'ret' => $event->response,
-            'module' => Sms::getModule($event->module),
-            'apiName' => $event->apiName,
-            'date' => \Yii::$app->formatter->asDatetime(time()),
-            'dateline' => time(),
-            'sendDay' => strtotime(date('Y-m-d'))
-        ];
-
-        $sms = \Yii::$app->mongodb->getCollection('smsLog');
-        $sms->insert($smsLog);
     }
 
 }

@@ -1,26 +1,26 @@
 {
-    "name": "freedom1024/yii2-sms",
-    "type": "library",
-    "description": "Mobile sms for Yii2",
-    "keywords": ["mobile", "sms", "php", "yii2", "extension"],
-    "homepage": "http://blog.herozw.com",
-    "authors": [
-        {
-            "name": "Ryan",
-            "email": "hero.zw2099@gmail.com",
-            "homepage": "http://blog.herozw.com"
-        }
-    ],
-    "require": {
-        "php": ">=5.6.0",
-        "yiisoft/yii2-httpclient": "^2.0",
-        "yiisoft/yii2-queue": "^2.0",
-        "yiisoft/yii2-mongodb": "^2.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "~4.0"
-    },
-    "autoload": {
-        "psr-4": { "yii\\sms\\": "" }
+  "name": "ryan/yii2-sms",
+  "description": "Yii 2 sms extension",
+  "type": "yii2-extension",
+  "keywords": [
+    "yii",
+    "yii2",
+    "sms",
+    "mobile sms"
+  ],
+  "license": "BSD-3-Clause",
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "authors": [
+    {
+      "name": "Ryan",
+      "email": "1042107393@qq.com"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "ryan\\yii\\sms\\": "src"
+    }
+  }
 }
