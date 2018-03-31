@@ -1,0 +1,26 @@
+{
+  "name": "ryan/yii2-sms",
+  "description": "Yii 2 sms extension",
+  "type": "yii2-extension",
+  "keywords": [
+    "yii",
+    "yii2",
+    "sms",
+    "mobile sms"
+  ],
+  "license": "BSD-3-Clause",
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "authors": [
+    {
+      "name": "Ryan",
+      "email": "1042107393@qq.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "ryan\\yii\\sms\\": "src"
+    }
+  }
+}
