@@ -12,7 +12,7 @@ return [
             'url' => 'http://www.smswang.net:7803/sms',
             'account' => '666666',
             'password' => '666666',
-            'sign' => 'your sign',
+            'sign' => '短信签名',
             'as sms' => yii\sms\SmsBehavior::class,
         ],
     ],
@@ -20,7 +20,7 @@ return [
 ```
 
 ```php
-使用事例：
+使用示例：
 \Yii::$app->sms->send(
     13168755555,
     '短信内容',
