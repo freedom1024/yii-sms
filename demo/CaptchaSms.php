@@ -14,37 +14,32 @@ use ryan\yii\sms\BaseSms;
  * Class CaptchaSms
  * @package yii\sms;
  */
-class CaptchaSms extends BaseSms
+class CaptchaSms
 {
     /**
-     * @var $action string 发送任务命令
+     * @var USERID integer 企业id
      */
-    public $action;
+    const USERID = '6666';
 
     /**
-     * @var $userid integer 企业id
+     * @var ACCOUNT string 发送用户帐号
      */
-    public $userid;
+    const ACCOUNT = '6666';
 
     /**
-     * @var $account string 发送用户帐号
+     * @var PASSWORD string 发送用户密码
      */
-    public $account;
+    const PASSWORD = '6666';
 
     /**
-     * @var $userid string 发送用户密码
+     * @var EXTNO string 扩展子号
      */
-    public $password;
+    const EXTNO = '6666';
 
     /**
-     * @var $extno string 扩展子号
+     * @var SIGN string 短信签名
      */
-    public $extno;
-
-    /**
-     * @var $sign string 短信签名
-     */
-    public $sign;
+    const SIGN = 'your sign';
 
     /**
      * @var $tel string 发送手机号
@@ -55,6 +50,11 @@ class CaptchaSms extends BaseSms
      * @var $content string 短信内容
      */
     public $content;
+
+    /**
+     * @var $data array
+     */
+    public $data;
 
     /**
      * 优易网短信验证码
@@ -70,17 +70,19 @@ class CaptchaSms extends BaseSms
      * 发送短信
      * @param string|array $tel 手机号码
      * @param string $content 发送内容
-     * @param $ip string 客户端发送ip
-     * @param $params array
+     * @param $params array extra params
      * @return mixed
      */
-    public function send($tel, $content, $ip, $params = [])
+    public function send($tel, $content, $params = [])
     {
         $this->setTel($tel);
         $this->setContent($content);
-        $this->setData();
 
-        $response = parent::send($tel, $content, $ip, $params);
+        $response = \Yii::$app->sms->send(array_merge($this->config, [
+            'tel' => $this->tel,
+            'content' => $this->content,
+            'action' => 'send'
+        ]), $params);
 
         return $response;
     }
@@ -91,30 +93,24 @@ class CaptchaSms extends BaseSms
      */
     public function queryBalance()
     {
-        $httpClient = \Yii::$app->http;
-
-        $this->action = 'overage';
         $this->setData();
-        $request = $httpClient->post($this->url, $this->data);
-        $response = $httpClient->send($request);
-        $response = $response->getData();
+        $response = \Yii::$app->sms->queryBalance(array_merge($this->config, [
+            'action' => 'overage'
+        ]));
 
         return $response;
     }
 
     /**
-     * set post data
+     * get config
      */
-    public function setData()
+    public function getConfig()
     {
-        $this->data = [
-            'mobile' => $this->tel,
-            'content' => $this->content,
-            'action' => $this->action,
-            'account' => $this->account,
-            'password' => $this->password,
-            'userid' => $this->userid,
-            'extno' => $this->extno
+        return [
+            'account' => self::ACCOUNT,
+            'password' => self::PASSWORD,
+            'userid' => self::USERID,
+            'extno' => self::EXTNO
         ];
     }
 
@@ -123,7 +119,7 @@ class CaptchaSms extends BaseSms
      */
     public function setContent($content)
     {
-        $this->content = "【{$this->sign}】" . trim($content) . self::SMS_SUFFIX;
+        $this->content = "【".self::SIGN."】" . trim($content) . self::SMS_SUFFIX;
     }
 
     /**

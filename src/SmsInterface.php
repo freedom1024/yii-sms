@@ -1,21 +1,14 @@
 <?php
 /**
+ * Created by PhpStorm.
  * User: Ryan
- * Date: 2017/10/23
- * Time: 15:24
+ * Date: 2017/12/7
+ * Time: 17:42
  */
 
 namespace ryan\yii\sms;
 
 interface SmsInterface
 {
-    /**
-     * 发送短信
-     * @param string|array $tel 手机号码
-     * @param string|array $content 发送内容
-     * @param $ip string 客户端发送ip
-     * @param $params array
-     * @return mixed
-     */
-    public function send($tel, $content, $ip, $params = []);
+	
 }
