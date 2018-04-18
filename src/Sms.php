@@ -31,11 +31,6 @@ class Sms extends BaseSms implements SmsInterface
     public $url;
 
     /**
-     * @var $data array post data
-     */
-    public $data;
-
-    /**
      * send sms
      * @param array $data post data
      * @param array $params extra params
