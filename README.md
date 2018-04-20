@@ -8,7 +8,7 @@ return [
     'components' => [
         'sms' => [
             'class' => Sms::class,
-            'url' => 'http://www.smswang.net:7803/sms',
+            'url' => 'api url',
             'as sms' => SmsBehavior::class,
         ],
     ],
