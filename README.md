@@ -7,7 +7,7 @@ Usage
 return [   
     'components' => [
         'sms' => [
-            'class' => CaptchaSms::class,
+            'class' => Sms::class,
             'url' => 'http://www.smswang.net:7803/sms',
             'as sms' => SmsBehavior::class,
         ],

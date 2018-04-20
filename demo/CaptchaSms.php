@@ -5,9 +5,7 @@
  * Time: 15:24
  */
 
-namespace ryan\yii\demo;
-
-use ryan\yii\sms\BaseSms;
+namespace pc\controllers;
 
 /**
  * captcha sms
@@ -42,6 +40,11 @@ class CaptchaSms
     const SIGN = 'your sign';
 
     /**
+     * 短信后缀
+     */
+    const SMS_SUFFIX = ' 退订回T';
+
+    /**
      * @var $tel string 发送手机号
      */
     public $tel;
@@ -50,21 +53,6 @@ class CaptchaSms
      * @var $content string 短信内容
      */
     public $content;
-
-    /**
-     * @var $data array
-     */
-    public $data;
-
-    /**
-     * 优易网短信验证码
-     */
-    const API_NAME = 'UeSms';
-
-    /**
-     * 短信后缀
-     */
-    const SMS_SUFFIX = ' 退订回T';
 
     /**
      * 发送短信
@@ -93,7 +81,6 @@ class CaptchaSms
      */
     public function queryBalance()
     {
-        $this->setData();
         $response = \Yii::$app->sms->queryBalance(array_merge($this->config, [
             'action' => 'overage'
         ]));
