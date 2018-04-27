@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * User: Ryan
  * Date: 2017/10/23
@@ -50,11 +50,6 @@ class CaptchaSms
      * @var $content string 短信内容
      */
     public $content;
-
-    /**
-     * 优易网短信验证码
-     */
-    const API_NAME = 'UeSms';
 
     /**
      * 短信后缀
