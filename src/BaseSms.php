@@ -16,14 +16,15 @@ abstract class BaseSms extends Component
     /**
      * send sms
      * @param array $data post data
-     * @param array $params extra params
+     * @param array $params event params
      * @return array|mixed
      */
-    abstract public function send($data = [], $params = []);
+    abstract public function send(array $data, array $params = []);
 
     /**
      * query account balance
-     * @return array|mixed
+     * @param array $data
+     * @return mixed
      */
-    abstract public function queryBalance($data);
+    abstract public function queryBalance(array $data);
 }

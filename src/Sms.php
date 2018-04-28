@@ -7,8 +7,6 @@
 
 namespace ryan\yii\sms;
 
-use yii\base\Component;
-
 /**
  * Yii2 short message
  * Class Sms
@@ -33,10 +31,10 @@ class Sms extends BaseSms implements SmsInterface
     /**
      * send sms
      * @param array $data post data
-     * @param array $params extra params
+     * @param array $params event params
      * @return array|mixed
      */
-    public function send($data = [], $params = [])
+    public function send(array $data, array $params = [])
     {
         $this->trigger(self::EVENT_BEFORE_SEND, new SmsEvent([
             'params' => $params,
@@ -56,9 +54,10 @@ class Sms extends BaseSms implements SmsInterface
 
     /**
      * query account balance
-     * @return array|mixed
+     * @param array $data
+     * @return mixed
      */
-    public function queryBalance($data)
+    public function queryBalance(array $data)
     {
         $httpClient = \Yii::$app->http;
 

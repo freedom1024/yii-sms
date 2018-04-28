@@ -5,41 +5,48 @@
  * Time: 15:24
  */
 
-namespace ryan\yii\demo;
+namespace common\components;
 
-use ryan\yii\sms\BaseSms;
+use ryan\yii\sms\Sms;
+use ryan\yii\sms\SmsBehavior;
+use yii\base\Component;
 
 /**
  * captcha sms
  * Class CaptchaSms
  * @package yii\sms;
  */
-class CaptchaSms
+class CaptchaSms extends Component
 {
     /**
-     * @var USERID integer 企业id
+     * @var integer 企业id
      */
     const USERID = '6666';
 
     /**
-     * @var ACCOUNT string 发送用户帐号
+     * @var string 发送用户帐号
      */
     const ACCOUNT = '6666';
 
     /**
-     * @var PASSWORD string 发送用户密码
+     * @var string 发送用户密码
      */
     const PASSWORD = '6666';
 
     /**
-     * @var EXTNO string 扩展子号
+     * @var string 扩展子号
      */
     const EXTNO = '6666';
 
     /**
-     * @var SIGN string 短信签名
+     * @var string 短信签名
      */
     const SIGN = 'your sign';
+
+    /**
+     * @var string api url
+     */
+    const API_URL = 'api url';
 
     /**
      * @var $tel string 发送手机号
@@ -60,7 +67,7 @@ class CaptchaSms
      * 发送短信
      * @param string|array $tel 手机号码
      * @param string $content 发送内容
-     * @param $params array extra params
+     * @param $params array event params
      * @return mixed
      */
     public function send($tel, $content, $params = [])
@@ -68,8 +75,12 @@ class CaptchaSms
         $this->setTel($tel);
         $this->setContent($content);
 
-        $response = \Yii::$app->sms->send(array_merge($this->config, [
-            'tel' => $this->tel,
+        $sms = new Sms([
+            'url' => self::API_URL,
+            'as sms' => SmsBehavior::class
+        ]);
+        $response = $sms->send(array_merge($this->config, [
+            'mobile' => $this->tel,
             'content' => $this->content,
             'action' => 'send'
         ]), $params);
@@ -83,7 +94,8 @@ class CaptchaSms
      */
     public function queryBalance()
     {
-        $response = \Yii::$app->sms->queryBalance(array_merge($this->config, [
+        $sms = new Sms(['url' => self::API_URL]);
+        $response = $sms->queryBalance(array_merge($this->config, [
             'action' => 'overage'
         ]));
 
@@ -108,7 +120,7 @@ class CaptchaSms
      */
     public function setContent($content)
     {
-        $this->content = "【".self::SIGN."】" . trim($content) . self::SMS_SUFFIX;
+        $this->content = "【".self::SIGN."】" . trim($content);
     }
 
     /**

@@ -19,8 +19,8 @@ class SmsBehavior extends Behavior
     public function events()
     {
         return [
-            BaseSms::EVENT_BEFORE_SEND => 'beforeSend',
-            BaseSms::EVENT_AFTER_SEND => 'afterSend'
+            Sms::EVENT_BEFORE_SEND => 'beforeSend',
+            Sms::EVENT_AFTER_SEND => 'afterSend'
         ];
     }
 
