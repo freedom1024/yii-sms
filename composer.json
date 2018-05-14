@@ -9,9 +9,7 @@
   ],
   "license": "BSD-3-Clause",
   "require": {
-    "php": ">=5.4.0",
-    "yiisoft/yii2": "~2.0.11",
-    "yiisoft/yii2-httpclient": "^2.0"
+    "php": ">=5.4.0"
   },
   "authors": [
     {
