@@ -7,7 +7,7 @@ Usage
 return [   
     'components' => [
         'sms' => [
-            'class' => CaptchaSms::class,
+            'class' => Sms::class,
             'url' => 'api url',
             'as sms' => SmsBehavior::class,
         ],
