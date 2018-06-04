@@ -27,4 +27,11 @@ abstract class BaseSms extends Component
      * @return mixed
      */
     abstract public function queryBalance(array $data);
+	
+    /**
+     * get sms statusReport
+     * @param array $data
+     * @return mixed
+     */
+    abstract public function getStatusReport(array $data);	
 }

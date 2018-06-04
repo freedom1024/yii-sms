@@ -67,4 +67,20 @@ class Sms extends BaseSms implements SmsInterface
 
         return $response;
     }
+	
+    /**
+     * get sms statusReport
+     * @param array $data
+     * @return mixed
+     */
+    public function getStatusReport(array $data)
+    {
+        $httpClient = \Yii::$app->http;
+
+        $request = $httpClient->post($this->url, $data);
+        $response = $httpClient->send($request);
+        $response = $response->getData();
+
+        return $response;
+    }	
 }
