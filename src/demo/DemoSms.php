@@ -45,7 +45,7 @@ class DemoSms extends Component
      * @param $params array event params
      * @return mixed
      */
-    public function send($tel, $content, $params = [])
+    public function send($tel, $content, $params = [], $headers = [])
     {
         $tel = $this->handleTel($tel);
         $content = $this->handleContent($content);
@@ -56,7 +56,7 @@ class DemoSms extends Component
         $response = $sms->send(ArrayHelper::merge($this->config, [
             'mobile' => $tel,
             'content' => $content
-        ]), $params);
+        ]), $params, $headers);
 
         return $response;
     }

@@ -14,6 +14,21 @@ use yii\base\Component;
 abstract class BaseSms extends Component
 {
     /**
+     * @event SmsEvent
+     */
+    const EVENT_BEFORE_SEND = 'beforeSend';
+
+    /**
+     * @event SmsEvent
+     */
+    const EVENT_AFTER_SEND = 'afterSend';
+
+    /**
+     * @var $url string api url
+     */
+    public $url;
+
+    /**
      * send sms
      * @param array|string $data post data
      * @param array $params event params
@@ -26,14 +41,8 @@ abstract class BaseSms extends Component
     /**
      * query account balance
      * @param $data
+     * @param array $header curl headers
      * @return mixed
      */
-    abstract public function queryBalance($data);
-	
-    /**
-     * get sms statusReport
-     * @param $data
-     * @return mixed
-     */
-    abstract public function getStatusReport($data);
+    abstract public function queryBalance($data, $headers = []);
 }
