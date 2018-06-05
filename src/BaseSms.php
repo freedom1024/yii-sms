@@ -15,23 +15,25 @@ abstract class BaseSms extends Component
 {
     /**
      * send sms
-     * @param array $data post data
+     * @param array|string $data post data
      * @param array $params event params
+     * @param array $header curl headers
      * @return array|mixed
+     * @throws \yii\httpclient\Exception
      */
-    abstract public function send(array $data, array $params = []);
+    abstract public function send($data, array $params = [], $headers = []);
 
     /**
      * query account balance
-     * @param array $data
+     * @param $data
      * @return mixed
      */
-    abstract public function queryBalance(array $data);
+    abstract public function queryBalance($data);
 	
     /**
      * get sms statusReport
-     * @param array $data
+     * @param $data
      * @return mixed
      */
-    abstract public function getStatusReport(array $data);	
+    abstract public function getStatusReport($data);
 }

@@ -30,18 +30,20 @@ class Sms extends BaseSms implements SmsInterface
 
     /**
      * send sms
-     * @param array $data post data
+     * @param array|string $data post data
      * @param array $params event params
+     * @param array $header curl headers
      * @return array|mixed
+     * @throws \yii\httpclient\Exception
      */
-    public function send(array $data, array $params = [])
+    public function send($data, array $params = [], $headers = [])
     {
         $this->trigger(self::EVENT_BEFORE_SEND, new SmsEvent([
             'params' => $params,
         ]));
 
         $httpClient = \Yii::$app->http;
-        $request = $httpClient->post($this->url, $data);
+        $request = $httpClient->post($this->url, $data, $headers);
         $send = $httpClient->send($request);
         $response = $send->getData();
 
@@ -54,7 +56,7 @@ class Sms extends BaseSms implements SmsInterface
 
     /**
      * query account balance
-     * @param array $data
+     * @param $data
      * @return mixed
      */
     public function queryBalance(array $data)
@@ -70,7 +72,7 @@ class Sms extends BaseSms implements SmsInterface
 	
     /**
      * get sms statusReport
-     * @param array $data
+     * @param $data
      * @return mixed
      */
     public function getStatusReport(array $data)
