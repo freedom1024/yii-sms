@@ -42,10 +42,7 @@ class Sms extends BaseSms implements SmsInterface
             'params' => $params,
         ]));
 
-        $httpClient = \Yii::$app->http;
-        $request = $httpClient->post($this->url, $data, $headers);
-        $send = $httpClient->send($request);
-        $response = $send->getData();
+        $response = $this->request($this->url, $data, $headers);
 
         $this->trigger(self::EVENT_AFTER_SEND, new SmsEvent([
             'response' => $response
@@ -55,34 +52,45 @@ class Sms extends BaseSms implements SmsInterface
     }
 
     /**
-     * query account balance
+     * @param $url
      * @param $data
-     * @return mixed
+     * @param $headers
+     * @return array|mixed
+     * @throws \yii\httpclient\Exception
      */
-    public function queryBalance(array $data)
+    protected function request($url, $data, $headers)
     {
         $httpClient = \Yii::$app->http;
-
-        $request = $httpClient->post($this->url, $data);
-        $response = $httpClient->send($request);
-        $response = $response->getData();
+        $request = $httpClient->post($this->url, $data, $headers);
+        $send = $httpClient->send($request);
+        $response = $send->getData();
 
         return $response;
     }
-	
+
+    /**
+     * query account balance
+     * @param $data
+     * @param array $header curl headers
+     * @return mixed
+     */
+    public function queryBalance(array $data, $headers = [])
+    {
+        $response = $this->request($this->url, $data, $headers);
+
+        return $response;
+    }
+
     /**
      * get sms statusReport
      * @param $data
+     * @param array $header curl headers
      * @return mixed
      */
-    public function getStatusReport(array $data)
+    public function getStatusReport(array $data, $headers = [])
     {
-        $httpClient = \Yii::$app->http;
-
-        $request = $httpClient->post($this->url, $data);
-        $response = $httpClient->send($request);
-        $response = $response->getData();
+        $response = $this->request($this->url, $data, $headers);
 
         return $response;
-    }	
+    }
 }
