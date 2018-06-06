@@ -51,7 +51,7 @@ class DemoSms extends Component
         $content = $this->handleContent($content);
 
         /* @var $sms Sms */
-        $sms = \Yii::createObject(Sms::class, ['url' => $this->url]);
+        $sms = \Yii::createObject(['class' => Sms::class, 'url' => $this->url]);
         $sms->attachBehavior('sms', SmsBehavior::class);
         $response = $sms->send(ArrayHelper::merge($this->config, [
             'mobile' => $tel,
@@ -68,7 +68,7 @@ class DemoSms extends Component
     public function queryBalance()
     {
         /* @var $sms Sms */
-        $sms = \Yii::createObject(Sms::class, ['url' => $this->url]);
+        $sms = \Yii::createObject(['class' => Sms::class, 'url' => $this->url]);
         $response = $sms->queryBalance(ArrayHelper::merge($this->config, [
             'action' => 'overage'
         ]));

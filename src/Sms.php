@@ -24,18 +24,18 @@ class Sms extends BaseSms
      */
     public function send($data, array $params = [], $headers = [])
     {
-        $this->trigger(self::EVENT_BEFORE_SEND, new SmsEvent([
-            'params' => $params,
-        ]));
+        $event = new SmsEvent([
+            'params' => $params
+        ]);
+        $this->trigger(self::EVENT_BEFORE_SEND, $event);
 
         $httpClient = \Yii::$app->http;
         $request = $httpClient->post($this->url, $data, $headers);
         $send = $httpClient->send($request);
         $response = $send->getData();
 
-        $this->trigger(self::EVENT_AFTER_SEND, new SmsEvent([
-            'response' => $response
-        ]));
+        $event->response = $response;
+        $this->trigger(self::EVENT_AFTER_SEND, $event);
 
         return $response;
     }
