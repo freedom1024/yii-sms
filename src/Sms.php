@@ -29,7 +29,10 @@ class Sms extends BaseSms
         ]);
         $this->trigger(self::EVENT_BEFORE_SEND, $event);
 
-        $httpClient = \Yii::$app->http;
+        $httpClient = \Yii::createObject([
+            'class' => \yii\httpclient\Client::class,
+            'transport' => 'yii\httpclient\CurlTransport'
+        ]);
         $request = $httpClient->post($this->url, $data, $headers);
         $send = $httpClient->send($request);
         $response = $send->getData();
@@ -48,7 +51,10 @@ class Sms extends BaseSms
      */
     public function queryBalance($data, $headers = [])
     {
-        $httpClient = \Yii::$app->http;
+        $httpClient = \Yii::createObject([
+            'class' => \yii\httpclient\Client::class,
+            'transport' => 'yii\httpclient\CurlTransport'
+        ]);
         $request = $httpClient->post($this->url, $data, $headers);
         $send = $httpClient->send($request);
         $response = $send->getData();
